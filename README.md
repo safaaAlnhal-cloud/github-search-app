@@ -11,5 +11,6 @@ A React app that searches GitHub users using GitHub API.
 
 ## How to run
 npm install
+
 npm run dev
 
