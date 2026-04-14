@@ -1,4 +1,6 @@
 import {useState} from 'react'
+import SearchBar from "./components/SearchBar";
+import UserCard from "./components/UserCard";
 import "./App.css";
 
 
@@ -38,35 +40,19 @@ function App() {
        <button className="theme-btn" onClick={() => setTheme(theme === "light" ? "dark" : "light")}>
           {theme === "light" ? "🌙 Dark Mode" : "☀️ Light Mode"}
        </button>
-      
-     <div className="search-box">
-       <input type="text"
-        placeholder="Search for a GitHub user" 
-        value={username}
-        onChange={(e) => setUsername(e.target.value)} />
-       <button onClick={fetchUserData}>Search</button>
-     </div>
+       <SearchBar
+         username={username}
+         setUsername={setUsername}
+         onSearch={fetchUserData}
+         loading={loading}
+         />
+     
+       
+    
 
     {loading && <p>Loading...</p>}
     {error && <p style={{color: "red"}}>{error}</p>}
-    {userdata && (
-     <div className="card">
-       <img src={userdata.avatar_url} />
-
-      <div className="info">
-        <h2>{userdata.name}</h2>
-        <p>{userdata.bio}</p>
-
-      <div className="stats">
-        <p>Repos: {userdata.public_repos}</p>
-        <p>Followers: {userdata.followers}</p>
-        <p>Following: {userdata.following}</p>
-      </div>
-    </div>
-  </div>
-)}
-    
-      
+   {userdata && <UserCard user={userdata} />}
     </div>
   )
 }
