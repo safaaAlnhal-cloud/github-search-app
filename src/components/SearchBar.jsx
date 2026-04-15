@@ -7,7 +7,7 @@ function SearchBar({ username, setUsername, onSearch, loading }) {
         value={username}
         onChange={(e) => setUsername(e.target.value)}
         onKeyDown={(e) => {
-          if (e.key === "Enter") onSearch();
+          if (e.key === "Enter" && !loading ) onSearch();
         }}
       />
       <button onClick={onSearch} disabled={loading}>
