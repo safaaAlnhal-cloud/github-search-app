@@ -11,23 +11,64 @@
   min-height: 100vh;
   background: #f4f6fb;
   color: #111;
+
+  
+  font-size: 18px;
 }
 
 .title {
-  font-size: 40px;
+  font-size: 48px;
   font-weight: bold;
   margin-bottom: 60px;
   color: #222;
+}
+.empty-state {
+  text-align: center;
+  margin-top: 40px;
+  padding: 20px;
+  color: #64748b;
+}
+
+.empty-state h3 {
+  font-size: 22px;
+  margin-bottom: 8px;
+  color: #4f46e5;
+}
+.error-box {
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-top: 10px;
+  font-weight: 500;
+}
+.loading {
+  margin-top: 15px;
+  font-weight: 500;
+  color: #4f46e5;
 }
 
 /* =======================
    SEARCH BOX
 ======================= */
-
 .search-box {
   display: flex;
-  gap: 10px;
+  gap: 12px;
+  align-items: center;
   margin-bottom: 50px;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.input-label {
+  font-size: 16px;  
+  font-weight: 600;
+  color: #4f46e5;
+  white-space: nowrap; 
 }
 
 .search-box input {
@@ -35,24 +76,24 @@
   width: 280px;
   border: 2px solid #ddd;
   border-radius: 8px;
-  font-size: 14px;
+  font-size: 16px; 
   outline: none;
   transition: 0.2s;
 }
-
 .search-box input:focus {
   border-color: #4f46e5;
   box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
 }
 
 .search-box button {
-  padding: 12px 18px;
+  padding: 12px 20px;
   border: none;
   border-radius: 8px;
   background: #4f46e5;
   color: white;
   cursor: pointer;
   transition: 0.2s;
+  font-size: 16px; 
 }
 
 .search-box button:hover {
@@ -73,7 +114,8 @@
   width: 100%;
   max-width: 500px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  transition: 0.2s;
+  transition: 0.3s ease;
+  font-size: 18px; 
 }
 
 .card:hover {
@@ -82,8 +124,8 @@
 }
 
 .card img {
-  width: 120px;
-  height: 120px;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
 }
 
@@ -105,12 +147,15 @@
   padding: 10px;
   background: white;
   border-radius: 8px;
+
+  font-size: 16px; 
 }
 
-.stats {
+
+.stats p {
   padding: 8px 12px;
   border-radius: 10px;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 500;
   background: #f1f5f9;
 }
@@ -128,6 +173,7 @@
   background: #4f46e5;
   color: white;
   transition: 0.2s;
+  font-size: 16px; 
 }
 
 .theme-btn:hover {
@@ -143,10 +189,17 @@
   background: #0f172a;
   color: white;
 }
-.app.dark .title{ 
+
+.app.dark .title {
   color: white;
 }
-
+.app.dark .input-label {
+  color: #c7d2fe;   
+}
+.app.dark .error-box {
+  background: #c93030;
+  color: #fecaca;
+}
 
 .app.dark .card {
   background: #1e293b;
@@ -157,6 +210,7 @@
   background: #1e293b;
   border: 1px solid #334155;
   color: white;
+  font-size: 16px;
 }
 
 .app.dark .search-box input::placeholder {
@@ -171,6 +225,7 @@
   background: #334155;
   color: #e2e8f0;
 }
+
 .app.dark .card h2,
 .app.dark .card p {
   color: white;
@@ -183,7 +238,7 @@
 @media (max-width: 600px) {
 
   .title {
-    font-size: 28px;
+    font-size: 34px; 
     text-align: center;
   }
 
@@ -195,6 +250,7 @@
   .search-box input,
   .search-box button {
     width: 100%;
+    font-size: 16px;
   }
 
   .card {
@@ -202,13 +258,16 @@
     align-items: center;
     text-align: center;
     width: 100%;
+    font-size: 17px;
   }
 
   .app {
     padding: 20px;
+    font-size: 17px;
   }
 
   .stats {
     justify-content: center;
+    font-size: 16px;
   }
 }
