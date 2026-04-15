@@ -3,6 +3,7 @@ import SearchBar from "./components/SearchBar";
 import UserCard from "./components/UserCard";
 import ThemeToggle from './components/ThemeToggle';
 import { fetchGitHubUser } from "./services/githubService";
+import { useTheme } from "./hooks/useTheme";
 import "./App.css";
 
 
@@ -12,17 +13,7 @@ function App() {
    const [userData, setUserData] = useState(null)
    const [loading, setLoading] = useState(false)
    const [error, setError] = useState('')
-   const [theme, setTheme] = useState(() => {
-   const savedTheme = localStorage.getItem("theme")
-      if (savedTheme)
-        return savedTheme
-
-         return window.matchMedia("(prefers-color-scheme: dark)").matches? "dark" : "light"
-   })
-
-   useEffect(() => {
-    localStorage.setItem("theme", theme);
-      }, [theme]);
+   const { theme, setTheme } = useTheme();
 
    const fetchUserData = async () => {
      setUserData(null);
@@ -48,7 +39,11 @@ function App() {
       setUserData(result.data)
      }
    } catch (err) {
-    setError("Something went wrong ❌")
+      if (err.name === "TypeError") {
+        setError("Network error ❌ Check your internet");
+     } else {
+       setError("Unexpected error ❌");
+     }
    } finally {
     setLoading(false)
    }
@@ -67,11 +62,19 @@ function App() {
        
     
 
-    {loading && <p>Loading...</p>}
-    {error && <p style={{color: "red"}}>{error}</p>}
+    {loading && (
+      <div className="loading">
+         🔄 Searching GitHub...  </div>
+      )}
+    {error && (
+      <div className="error-box"> {error}</div>
+      )}
     {!userData && !loading && !error && (
-       <p>Search for a GitHub user 🔍</p>
-    )}
+     <div className="empty-state">
+       <h3>👋 Welcome!</h3>
+       <p>Search for a GitHub user to view profile details</p>
+     </div>
+)}
    {userData && <UserCard user={userData} />}
     </div>
   )
