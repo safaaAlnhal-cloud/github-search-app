@@ -2,7 +2,7 @@ import {useState , useEffect} from 'react'
 import SearchBar from "./components/SearchBar";
 import UserCard from "./components/UserCard";
 import ThemeToggle from './components/ThemeToggle';
-
+import { fetchGitHubUser } from "./services/githubService";
 import "./App.css";
 
 
@@ -45,7 +45,7 @@ function App() {
       
        }else
          {
-      setUserData(data)
+      setUserData(result.data)
      }
    } catch (err) {
     setError("Something went wrong ❌")
@@ -69,6 +69,9 @@ function App() {
 
     {loading && <p>Loading...</p>}
     {error && <p style={{color: "red"}}>{error}</p>}
+    {!userData && !loading && !error && (
+       <p>Search for a GitHub user 🔍</p>
+    )}
    {userData && <UserCard user={userData} />}
     </div>
   )
