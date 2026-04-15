@@ -1,16 +1,17 @@
 # GitHub User Search App
 
-A React app that searches GitHub users using GitHub API.
+## 📌 Overview
+React app to search GitHub users and display profile info.
 
-## Features
-- Search users by username
-- Light/Dark theme
-- Responsive design
+## 🚀 Features
+- Search GitHub users
+- Dark / Light mode
+- Custom hooks (useTheme, useGitHubUser, useDebounce)
+- Debounced search
 - Loading & error handling
-- Bonus: system theme detection
 
-## How to run
-npm install
-
-npm run dev
-
+## 🧠 Tech Used
+- React
+- JavaScript
+- CSS
+- Git & GitHub
