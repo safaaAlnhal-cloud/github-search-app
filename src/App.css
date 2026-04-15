@@ -1,4 +1,24 @@
 /* =======================
+   COLOR VARIABLES
+======================= */
+
+:root {
+  --primary: #4f46e5;
+  --primary-dark: #3730a3;
+  --primary-light: #e0e7ff;
+
+  --bg: #f4f6fb;
+  --surface: #ffffff;
+  --text: #111827;
+  --text-muted: #64748b;
+
+  --error-bg: #fee2e2;
+  --error-text: #991b1b;
+
+  --stats-bg: #f1f5f9;
+}
+
+/* =======================
    APP BASE
 ======================= */
 
@@ -9,10 +29,8 @@
   align-items: center;
   padding: 40px;
   min-height: 100vh;
-  background: #f4f6fb;
-  color: #111;
-
-  
+  background: var(--bg);
+  color: var(--text);
   font-size: 18px;
 }
 
@@ -20,37 +38,35 @@
   font-size: 48px;
   font-weight: bold;
   margin-bottom: 60px;
-  color: #222;
+  color: var(--primary);
 }
+
 .empty-state {
   text-align: center;
   margin-top: 40px;
   padding: 20px;
-  color: #64748b;
+  color: var(--text-muted);
 }
 
 .empty-state h3 {
   font-size: 22px;
   margin-bottom: 8px;
-  color: #4f46e5;
+  color: var(--primary);
 }
+
 .error-box {
-  background: #fee2e2;
-  color: #991b1b;
+  background: var(--error-bg);
+  color: var(--error-text);
   padding: 12px 16px;
   border-radius: 8px;
   margin-top: 10px;
   font-weight: 500;
 }
-.loading {
-  margin-top: 15px;
-  font-weight: 500;
-  color: #4f46e5;
-}
 
 /* =======================
    SEARCH BOX
 ======================= */
+
 .search-box {
   display: flex;
   gap: 12px;
@@ -65,10 +81,10 @@
 }
 
 .input-label {
-  font-size: 16px;  
+  font-size: 16px;
   font-weight: 600;
-  color: #4f46e5;
-  white-space: nowrap; 
+  color: var(--primary);
+  white-space: nowrap;
 }
 
 .search-box input {
@@ -76,12 +92,13 @@
   width: 280px;
   border: 2px solid #ddd;
   border-radius: 8px;
-  font-size: 16px; 
+  font-size: 16px;
   outline: none;
   transition: 0.2s;
 }
+
 .search-box input:focus {
-  border-color: #4f46e5;
+  border-color: var(--primary);
   box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
 }
 
@@ -89,16 +106,22 @@
   padding: 12px 20px;
   border: none;
   border-radius: 8px;
-  background: #4f46e5;
+  background: var(--primary);
   color: white;
   cursor: pointer;
   transition: 0.2s;
-  font-size: 16px; 
+  font-size: 16px;
 }
 
 .search-box button:hover {
-  background: #3730a3;
+  background: var(--primary-dark);
   transform: translateY(-2px);
+}
+
+.search-box button:disabled {
+  background: #a5b4fc;
+  cursor: not-allowed;
+  transform: none;
 }
 
 /* =======================
@@ -108,25 +131,26 @@
 .card {
   display: flex;
   gap: 20px;
-  background: white;
+  background: var(--surface);
   padding: 25px;
   border-radius: 16px;
   width: 100%;
   max-width: 500px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  transition: 0.3s ease;
-  font-size: 18px; 
+  box-shadow: 0 10px 25px rgba(79, 70, 229, 0.1);
+  transition: 0.2s;
+  font-size: 18px;
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+  box-shadow: 0 15px 30px rgba(79, 70, 229, 0.18);
 }
 
 .card img {
   width: 130px;
   height: 130px;
   border-radius: 50%;
+  border: 3px solid var(--primary-light);
 }
 
 .info {
@@ -145,19 +169,18 @@
   flex-wrap: wrap;
   gap: 10px;
   padding: 10px;
-  background: white;
+  background: var(--stats-bg);
   border-radius: 8px;
-
-  font-size: 16px; 
+  font-size: 16px;
 }
-
 
 .stats p {
   padding: 8px 12px;
   border-radius: 10px;
   font-size: 16px;
   font-weight: 500;
-  background: #f1f5f9;
+  background: var(--primary-light);
+  color: var(--primary-dark);
 }
 
 /* =======================
@@ -170,14 +193,14 @@
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  background: #4f46e5;
+  background: var(--primary);
   color: white;
   transition: 0.2s;
-  font-size: 16px; 
+  font-size: 16px;
 }
 
 .theme-btn:hover {
-  background: #3730a3;
+  background: var(--primary-dark);
   transform: scale(1.05);
 }
 
@@ -186,49 +209,82 @@
 ======================= */
 
 .app.dark {
-  background: #0f172a;
-  color: white;
+  --primary: #818cf8;
+  --primary-dark: #6366f1;
+  --primary-light: #1e1b4b;
+
+  --bg: #0f172a;
+  --surface: #1e293b;
+  --text: #f1f5f9;
+  --text-muted: #94a3b8;
+
+  --error-bg: #7f1d1d;
+  --error-text: #fecaca;
+
+  --stats-bg: #0f1f3d;
+
+  background: var(--bg);
+  color: var(--text);
 }
 
 .app.dark .title {
-  color: white;
+  color: var(--primary);
 }
+
 .app.dark .input-label {
-  color: #c7d2fe;   
-}
-.app.dark .error-box {
-  background: #c93030;
-  color: #fecaca;
+  color: var(--primary);
 }
 
 .app.dark .card {
-  background: #1e293b;
-  color: white;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.app.dark .card h2 {
+  color: var(--text);
+}
+
+.app.dark .card p {
+  color: var(--text-muted);
+}
+
+.app.dark .card img {
+  border-color: #312e81;
 }
 
 .app.dark .search-box input {
-  background: #1e293b;
+  background: var(--surface);
   border: 1px solid #334155;
-  color: white;
+  color: var(--text);
   font-size: 16px;
 }
 
 .app.dark .search-box input::placeholder {
-  color: #94a3b8;
+  color: var(--text-muted);
 }
 
 .app.dark .search-box button {
-  background: #6366f1;
+  background: var(--primary-dark);
+}
+
+.app.dark .search-box button:hover {
+  background: #4f46e5;
 }
 
 .app.dark .stats {
-  background: #334155;
-  color: #e2e8f0;
+  background: var(--stats-bg);
 }
 
-.app.dark .card h2,
-.app.dark .card p {
-  color: white;
+.app.dark .stats p {
+  background: #1e1b4b;
+  color: #a5b4fc;
+  font-weight: 600;
+}
+
+.app.dark .error-box {
+  background: var(--error-bg);
+  color: var(--error-text);
 }
 
 /* =======================
@@ -236,9 +292,8 @@
 ======================= */
 
 @media (max-width: 600px) {
-
   .title {
-    font-size: 34px; 
+    font-size: 34px;
     text-align: center;
   }
 

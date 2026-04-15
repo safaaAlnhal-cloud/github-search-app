@@ -5,14 +5,12 @@ export function useTheme() {
     const saved = localStorage.getItem("theme");
     if (saved) return saved;
 
-    return window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark"    : "light";
   });
 
   useEffect(() => {
     localStorage.setItem("theme", theme);
-  }, [theme]);
+   }, [theme]);
 
   return { theme, setTheme };
 }
