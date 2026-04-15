@@ -1,53 +1,18 @@
-import {useState , useEffect} from 'react'
+import {useState} from 'react'
 import SearchBar from "./components/SearchBar";
 import UserCard from "./components/UserCard";
-import ThemeToggle from './components/ThemeToggle';
-import { fetchGitHubUser } from "./services/githubService";
+import ThemeToggle from './components/ThemeToggle';import { fetchGitHubUser } from "./services/githubService";
 import { useTheme } from "./hooks/useTheme";
+import { useGitHubUser } from "./hooks/useGitHubUser";
 import "./App.css";
 
 
 
 function App() {
    const [username, setUsername] = useState('')
-   const [userData, setUserData] = useState(null)
-   const [loading, setLoading] = useState(false)
-   const [error, setError] = useState('')
    const { theme, setTheme } = useTheme();
+  const { userData, loading, error, searchUser } = useGitHubUser();
 
-   const fetchUserData = async () => {
-     setUserData(null);
-   
-     if (!username.trim()) {
-    setError("Please enter a username")
-    return
-  }
-      setLoading(true)
-      setError('')
-   try {
-    const result = await fetchGitHubUser(username);
-    
-    if (!result.ok) {
-      if (result.status === 404) {
-        setError("User not found ❌");
-      } else {
-        setError("GitHub API error ❌");
-       }
-      
-       }else
-         {
-      setUserData(result.data)
-     }
-   } catch (err) {
-      if (err.name === "TypeError") {
-        setError("Network error ❌ Check your internet");
-     } else {
-       setError("Unexpected error ❌");
-     }
-   } finally {
-    setLoading(false)
-   }
-}
   return (
     <div className={`app ${theme}`}>
        <h1 className="title" >GitHub User Search App</h1>
@@ -55,7 +20,7 @@ function App() {
        <SearchBar
          username={username}
          setUsername={setUsername}
-         onSearch={fetchUserData}
+         onSearch={() => searchUser(username)}
          loading={loading}
          />
      
@@ -78,6 +43,6 @@ function App() {
    {userData && <UserCard user={userData} />}
     </div>
   )
-}
 
+}
 export default App 
