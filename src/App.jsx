@@ -20,9 +20,9 @@ function App() {
          return window.matchMedia("(prefers-color-scheme: dark)").matches? "dark" : "light"
    })
 
-  useEffect(() => {
-   localStorage.setItem("theme", theme);
-     }, [theme]);
+   useEffect(() => {
+    localStorage.setItem("theme", theme);
+      }, [theme]);
 
    const fetchUserData = async () => {
      setUserData(null);
@@ -34,11 +34,10 @@ function App() {
       setLoading(true)
       setError('')
    try {
-     const response = await fetch(`https://api.github.com/users/${username}`)
-     const data = await response.json()
-
-    if (!response.ok) {
-      if (response.status === 404) {
+    const result = await fetchGitHubUser(username);
+    
+    if (!result.ok) {
+      if (result.status === 404) {
         setError("User not found ❌");
       } else {
         setError("GitHub API error ❌");
