@@ -14,17 +14,28 @@ function App() {
    const [error, setError] = useState('')
 
    const fetchUserData = async () => {
+   
+     if (!username.trim()) {
+    setError("Please enter a username")
+     setUserData(null);
+    return
+  }
       setLoading(true)
       setError('')
    try {
      const response = await fetch(`https://api.github.com/users/${username}`)
      const data = await response.json()
 
-     if (!response.ok) {
-      setError("User not found ❌")
-      setUserData(null)
-      return
-     } else {
+    if (!response.ok) {
+        setUserData(null);
+      if (response.status === 404) {
+        setError("User not found ❌");
+      } else {
+        setError("GitHub API error ❌");
+       }
+       return
+       }else
+         {
       setUserData(data)
      }
    } catch (err) {
