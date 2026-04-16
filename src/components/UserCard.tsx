@@ -1,4 +1,15 @@
-function UserCard({ user }) {
+type GitHubUser = {
+  avatar_url: string;
+  name: string | null;
+  bio: string | null;
+  public_repos: number;
+  followers: number;
+  following: number;
+}
+type Props = {
+  user: GitHubUser;
+};
+function UserCard({ user }: Props) {
   return (
     <div className="card">
       <img src={user.avatar_url} alt="user avatar" />
