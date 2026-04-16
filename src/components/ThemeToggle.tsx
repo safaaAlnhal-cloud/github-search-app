@@ -1,4 +1,8 @@
-function ThemeToggle({ theme, setTheme }) {
+type Props = {
+  theme: "light" | "dark";
+  setTheme: (theme: "light" | "dark") => void;
+};
+function ThemeToggle({ theme, setTheme }: Props) {
   return (
     <button
       className="theme-btn"
