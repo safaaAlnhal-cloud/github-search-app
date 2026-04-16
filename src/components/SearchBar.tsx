@@ -1,4 +1,10 @@
-function SearchBar({ username, setUsername, onSearch, loading }) {
+type Props = {
+  username: string;
+  setUsername: (value: string) => void;
+  onSearch: () => void;
+  loading: boolean;
+}
+function SearchBar({ username, setUsername, onSearch, loading }:Props) {
   return (
     <div className="search-box">
        <div className="input-group">
