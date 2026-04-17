@@ -9,17 +9,20 @@ import './App.css';
 function App() {
   const [username, setUsername] = useState<string>('');
   const { theme, setTheme } = useTheme();
-  const { userData, loading, error, searchUser } = useGitHubUser();
+  const { userData, loading, error, searchUser, resetUser } = useGitHubUser();
 
   return (
     <div className={`app ${theme}`}>
       <h1 className="title">GitHub User Search App</h1>
       <ThemeToggle theme={theme} setTheme={setTheme} />
       <SearchBar
+        
         username={username}
         setUsername={setUsername}
         onSearch={() => searchUser(username)}
         loading={loading}
+        onReset={resetUser}
+
       />
 
       {loading && <div className="loading">🔄 Searching GitHub... </div>}

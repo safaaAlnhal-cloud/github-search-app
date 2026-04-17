@@ -13,13 +13,21 @@ export function useGitHubUser() {
   const [userData, setUserData] = useState<GitHubUser | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
+   const resetUser = () => {
+      setUserData(null);
+      setError("");
+    };
   const searchUser = async (username: string): Promise<void> => {
-    setUserData(null);
+   
+   
 
     if (!username.trim()) {
+      resetUser();
       setError('Please enter a username');
       return;
-    }
+    } 
+    setUserData(null);
+
     setLoading(true);
     setError('');
     try {
@@ -55,5 +63,7 @@ export function useGitHubUser() {
     loading,
     error,
     searchUser,
+    resetUser,
+
   };
 }
