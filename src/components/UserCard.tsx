@@ -12,7 +12,7 @@ type Props = {
 function UserCard({ user }: Props) {
   return (
     <div className="card">
-      <img src={user.avatar_url} alt="user avatar" />
+      <img src={user.avatar_url} alt={user.name ?? "GitHub user avatar"} />
 
       <div className="info">
         <h2>{user.name || 'No name available'}</h2>

@@ -36,7 +36,9 @@ export function useGitHubUser() {
       if (!result.ok) {
         if (result.status === 404) {
           setError('User not found ❌');
-        } else {
+        } else if (result.status === 403) {
+          setError("Too many requests. Please try again later.");
+        }else {
           setError('GitHub API error ❌');
         }
         return;
