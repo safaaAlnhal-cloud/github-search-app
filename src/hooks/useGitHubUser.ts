@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { fetchGitHubUser } from "../services/githubService.js";
+import { useState } from 'react';
+import { fetchGitHubUser } from '../services/githubService.js';
 
 type GitHubUser = {
   avatar_url: string;
@@ -12,44 +12,40 @@ type GitHubUser = {
 export function useGitHubUser() {
   const [userData, setUserData] = useState<GitHubUser | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string>("");
+  const [error, setError] = useState<string>('');
   const searchUser = async (username: string): Promise<void> => {
     setUserData(null);
 
     if (!username.trim()) {
-      setError("Please enter a username");
+      setError('Please enter a username');
       return;
     }
     setLoading(true);
-    setError("");
+    setError('');
     try {
       const result = await fetchGitHubUser(username);
 
       if (!result.ok) {
         if (result.status === 404) {
-          setError("User not found ❌");
+          setError('User not found ❌');
         } else {
-          setError("GitHub API error ❌");
+          setError('GitHub API error ❌');
         }
         return;
       }
 
       setUserData(result.data);
-    } 
-    catch (err: unknown) {
-  if (err instanceof Error) {
-    if (err.name === "TypeError") {
-      setError("🌐 No internet connection");
-    } 
-    else if (err.message.includes("Failed to fetch")) {
-      setError("⚠️ Network error - please try again");
-    } 
-    else {
-      setError("❌ Unexpected error occurred");
-    }
-  }
-}
-    finally {
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        if (err.name === 'TypeError') {
+          setError('🌐 No internet connection');
+        } else if (err.message.includes('Failed to fetch')) {
+          setError('⚠️ Network error - please try again');
+        } else {
+          setError('❌ Unexpected error occurred');
+        }
+      }
+    } finally {
       setLoading(false);
     }
   };

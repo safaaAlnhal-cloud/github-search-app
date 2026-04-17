@@ -5,7 +5,7 @@ type GitHubUser = {
   public_repos: number;
   followers: number;
   following: number;
-}
+};
 type Props = {
   user: GitHubUser;
 };
@@ -15,8 +15,8 @@ function UserCard({ user }: Props) {
       <img src={user.avatar_url} alt="user avatar" />
 
       <div className="info">
-        <h2>{user.name || "No name available"}</h2>
-        <p>{user.bio || "No bio available"}</p>
+        <h2>{user.name || 'No name available'}</h2>
+        <p>{user.bio || 'No bio available'}</p>
 
         <div className="stats">
           <p>Repos: {user.public_repos}</p>
