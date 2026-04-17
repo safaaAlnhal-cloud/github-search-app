@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import SearchBar from './components/SearchBar.js';
 import UserCard from './components/UserCard.js';
 import ThemeToggle from './components/ThemeToggle.js';
