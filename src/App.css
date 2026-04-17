@@ -1,121 +1,182 @@
-/* =======================
-   COLOR VARIABLES
+/* ======================= 
+   FONT 
 ======================= */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
+/* ======================= 
+   COLOR VARIABLES 
+======================= */
 :root {
   --primary: #4f46e5;
   --primary-dark: #3730a3;
   --primary-light: #e0e7ff;
+  --primary-soft: #f5f3ff;
 
-  --bg: #f4f6fb;
+  --bg: #f0f2ff;
   --surface: #ffffff;
-  --text: #111827;
-  --text-muted: #64748b;
+  --text: #1e1b4b;
+  --text-muted: #6b7280;
+  --text-light: #9ca3af;
 
-  --error-bg: #fee2e2;
-  --error-text: #991b1b;
+  --border: #e0e0f0;
 
-  --stats-bg: #f1f5f9;
+  --error-bg: #fff1f1;
+  --error-text: #b91c1c;
+  --error-border: #fca5a5;
+
+  --stats-bg: #f5f3ff;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 999px;
 }
 
-/* =======================
-   APP BASE
+/* ======================= 
+   APP BASE 
 ======================= */
-
 .app {
-  font-family: Arial, sans-serif;
+  font-family: 'Space Grotesk', Arial, sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px;
+  padding: 48px 24px;
   min-height: 100vh;
   background: var(--bg);
   color: var(--text);
   font-size: 18px;
 }
 
+/* ======================= 
+   TITLE 
+======================= */
 .title {
-  font-size: 48px;
-  font-weight: bold;
-  margin-bottom: 60px;
+  font-size: 52px;
+  font-weight: 700;
+  margin-bottom: 40px;
   color: var(--primary);
+  letter-spacing: -0.5px;
 }
 
+/* ======================= 
+   EMPTY STATE 
+======================= */
 .empty-state {
   text-align: center;
-  margin-top: 40px;
-  padding: 20px;
+  margin-top: 48px;
+  padding: 32px 24px;
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  border: 1.5px dashed var(--border);
+  max-width: 380px;
+  width: 100%;
   color: var(--text-muted);
 }
 
 .empty-state h3 {
-  font-size: 22px;
+  font-size: 28px;
   margin-bottom: 8px;
   color: var(--primary);
+  font-weight: 600;
 }
 
+.empty-state p {
+  font-size: 18px;
+  color: var(--text-light);
+}
+
+/* ======================= 
+   ERROR BOX 
+======================= */
 .error-box {
   background: var(--error-bg);
   color: var(--error-text);
-  padding: 12px 16px;
-  border-radius: 8px;
-  margin-top: 10px;
+  border: 1px solid var(--error-border);
+  padding: 14px 20px;
+  border-radius: var(--radius-md);
+  margin-top: 12px;
   font-weight: 500;
+  font-size: 16px;
+  max-width: 520px;
+  width: 100%;
+  text-align: center;
 }
 
-/* =======================
-   SEARCH BOX
+/* ======================= 
+   SEARCH BOX 
 ======================= */
-
 .search-box {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   align-items: center;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
+  width: 100%;
+  max-width: 520px;
+  background: var(--surface);
+  padding: 10px 12px 10px 20px;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--border);
+  box-shadow: 0 2px 12px rgba(79, 70, 229, 0.08);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.search-box:focus-within {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
 }
 
 .input-group {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex: 1;
 }
 
 .input-label {
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 600;
   color: var(--primary);
   white-space: nowrap;
 }
 
 .search-box input {
-  padding: 12px;
-  width: 280px;
-  border: 2px solid #ddd;
-  border-radius: 8px;
-  font-size: 16px;
+  flex: 1;
+  border: none;
   outline: none;
-  transition: 0.2s;
+  font-family: 'Space Grotesk', Arial, sans-serif;
+  font-size: 17px;
+  color: var(--text);
+  background: transparent;
+  padding: 8px 0;
+  width: 100%;
 }
 
-.search-box input:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+.search-box input::placeholder {
+  color: var(--text-light);
 }
 
 .search-box button {
-  padding: 12px 20px;
+  padding: 12px 24px;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-full);
   background: var(--primary);
   color: white;
   cursor: pointer;
-  transition: 0.2s;
+  font-family: 'Space Grotesk', Arial, sans-serif;
   font-size: 16px;
+  font-weight: 600;
+  transition: background 0.2s, transform 0.15s;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .search-box button:hover {
   background: var(--primary-dark);
-  transform: translateY(-2px);
+  transform: translateY(-1px);
+}
+
+.search-box button:active {
+  transform: scale(0.97);
 }
 
 .search-box button:disabled {
@@ -124,205 +185,200 @@
   transform: none;
 }
 
-/* =======================
-   CARD
+/* ======================= 
+   CARD 
 ======================= */
-
 .card {
   display: flex;
-  gap: 20px;
+  gap: 24px;
   background: var(--surface);
-  padding: 25px;
-  border-radius: 16px;
+  padding: 28px;
+  border-radius: var(--radius-lg);
   width: 100%;
-  max-width: 500px;
-  box-shadow: 0 10px 25px rgba(79, 70, 229, 0.1);
-  transition: 0.2s;
-  font-size: 18px;
+  max-width: 520px;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 24px rgba(79, 70, 229, 0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(79, 70, 229, 0.18);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(79, 70, 229, 0.14);
 }
 
 .card img {
-  width: 130px;
-  height: 130px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
   border: 3px solid var(--primary-light);
+  flex-shrink: 0;
+  object-fit: cover;
 }
 
 .info {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  flex: 1;
 }
 
-/* =======================
-   STATS
-======================= */
+.info h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+}
 
+.info > p {
+  font-size: 16px;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ======================= 
+   STATS 
+======================= */
 .stats {
   display: flex;
-  justify-content: center;
+  gap: 8px;
   flex-wrap: wrap;
-  gap: 10px;
-  padding: 10px;
+  padding: 14px;
   background: var(--stats-bg);
-  border-radius: 8px;
-  font-size: 16px;
+  border-radius: var(--radius-md);
+  margin-top: 6px;
 }
 
 .stats p {
-  padding: 8px 12px;
-  border-radius: 10px;
-  font-size: 16px;
-  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  font-size: 14px;
+  font-weight: 600;
   background: var(--primary-light);
   color: var(--primary-dark);
+  margin: 0;
 }
 
-/* =======================
-   THEME BUTTON
+/* ======================= 
+   THEME BUTTON 
 ======================= */
-
 .theme-btn {
-  padding: 10px 15px;
-  margin-bottom: 40px;
-  border: none;
-  border-radius: 8px;
+  padding: 10px 22px;
+  margin-bottom: 32px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-full);
   cursor: pointer;
-  background: var(--primary);
-  color: white;
-  transition: 0.2s;
-  font-size: 16px;
+  background: var(--surface);
+  color: var(--primary);
+  font-family: 'Space Grotesk', Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.2s;
+  align-self: flex-end;
 }
 
 .theme-btn:hover {
-  background: var(--primary-dark);
-  transform: scale(1.05);
+  background: var(--primary-soft);
+  border-color: var(--primary);
 }
 
-/* =======================
-   DARK MODE
+/* ======================= 
+   DARK MODE 
 ======================= */
-
 .app.dark {
   --primary: #818cf8;
   --primary-dark: #6366f1;
-  --primary-light: #1e1b4b;
+  --primary-light: #2e2b6e;
+  --primary-soft: #1e1b4b;
 
   --bg: #0f172a;
   --surface: #1e293b;
   --text: #f1f5f9;
   --text-muted: #94a3b8;
+  --text-light: #64748b;
 
-  --error-bg: #7f1d1d;
-  --error-text: #fecaca;
+  --border: #2d3a4f;
 
-  --stats-bg: #0f1f3d;
+  --error-bg: #450a0a;
+  --error-text: #fca5a5;
+  --error-border: #7f1d1d;
+
+  --stats-bg: #162032;
 
   background: var(--bg);
   color: var(--text);
 }
 
-.app.dark .title {
-  color: var(--primary);
-}
-
-.app.dark .input-label {
-  color: var(--primary);
-}
-
-.app.dark .card {
-  background: var(--surface);
-  color: var(--text);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-}
-
-.app.dark .card h2 {
-  color: var(--text);
-}
-
-.app.dark .card p {
-  color: var(--text-muted);
-}
-
-.app.dark .card img {
-  border-color: #312e81;
+.app.dark .search-box {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
 }
 
 .app.dark .search-box input {
-  background: var(--surface);
-  border: 1px solid #334155;
   color: var(--text);
-  font-size: 16px;
-}
-
-.app.dark .search-box input::placeholder {
-  color: var(--text-muted);
-}
-
-.app.dark .search-box button {
-  background: var(--primary-dark);
 }
 
 .app.dark .search-box button:hover {
   background: #4f46e5;
 }
 
-.app.dark .stats {
-  background: var(--stats-bg);
+.app.dark .card {
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+.app.dark .card img {
+  border-color: #312e81;
 }
 
 .app.dark .stats p {
-  background: #1e1b4b;
-  color: #a5b4fc;
-  font-weight: 600;
+  color: #c7d2fe;
 }
 
-.app.dark .error-box {
-  background: var(--error-bg);
-  color: var(--error-text);
+.app.dark .theme-btn:hover {
+  background: var(--primary-soft);
 }
 
-/* =======================
-   RESPONSIVE
+/* ======================= 
+   RESPONSIVE 
 ======================= */
-
 @media (max-width: 600px) {
+  .app {
+    padding: 24px 16px;
+  }
+
   .title {
-    font-size: 34px;
+    font-size: 32px;
     text-align: center;
   }
 
   .search-box {
+    border-radius: var(--radius-lg);
+    padding: 8px;
     flex-direction: column;
-    width: 100%;
+    gap: 8px;
   }
 
-  .search-box input,
+  .search-box input {
+    padding: 12px 14px;
+  }
+
   .search-box button {
     width: 100%;
-    font-size: 16px;
+    padding: 14px;
+    border-radius: var(--radius-md);
   }
 
   .card {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    width: 100%;
-    font-size: 17px;
-  }
-
-  .app {
-    padding: 20px;
-    font-size: 17px;
+    padding: 22px 18px;
   }
 
   .stats {
     justify-content: center;
-    font-size: 16px;
+  }
+
+  .theme-btn {
+    align-self: center;
   }
 }

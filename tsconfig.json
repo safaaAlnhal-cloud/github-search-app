@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
-    "module": "nodenext",
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "target": "esnext",
-    "types": [],
+    "types": ["vite/client", "vitest/globals", "@testing-library/jest-dom"],
 
     "allowJs": true,
     "noEmit": true,
@@ -20,6 +21,5 @@
     "moduleDetection": "force",
     "skipLibCheck": true
   },
-
   "include": ["src"]
-}
+} 
