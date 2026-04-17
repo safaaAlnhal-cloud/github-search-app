@@ -3,26 +3,28 @@ type Props = {
   setUsername: (value: string) => void;
   onSearch: () => void;
   loading: boolean;
-}
-function SearchBar({ username, setUsername, onSearch, loading }:Props) {
+};
+function SearchBar({ username, setUsername, onSearch, loading }: Props) {
   return (
     <div className="search-box">
-       <div className="input-group">
-      <label htmlFor="username-input" className="input-label" >GitHub Username :</label>
+      <div className="input-group">
+        <label htmlFor="username-input" className="input-label">
+          GitHub Username :
+        </label>
 
-      <input
-        id="username-input"
-        type="text"
-        placeholder="Search for a GitHub user"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" && !loading ) onSearch();
-        }}
-      />
-       </div>
-      <button onClick={onSearch} disabled={loading }>
-        {loading ? "Searching..." : "Search"}
+        <input
+          id="username-input"
+          type="text"
+          placeholder="Search for a GitHub user"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' && !loading) onSearch();
+          }}
+        />
+      </div>
+      <button onClick={onSearch} disabled={loading}>
+        {loading ? 'Searching...' : 'Search'}
       </button>
     </div>
   );
