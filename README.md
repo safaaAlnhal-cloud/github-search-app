@@ -35,28 +35,26 @@ Users can switch between:
 The selected theme is saved and restored automatically on page reload.
 
 ---
-
 ## 📁 Folder Structure
 
+```txt
 src/
-│
 ├── components/
-│ ├── SearchBar.tsx
-│ ├── UserCard.tsx
-│ └── ThemeToggle.tsx
+│   ├── SearchBar.tsx
+│   ├── UserCard.tsx
+│   └── ThemeToggle.tsx
 │
 ├── hooks/
-│ ├── useGitHubUser.ts
-│ └── useTheme.ts
+│   ├── useGitHubUser.ts
+│   └── useTheme.ts
 │
 ├── services/
-│ └── githubService.ts
+│   └── githubService.ts
 │
 ├── App.tsx
 ├── main.tsx
 └── App.css
-
-
+```
 ---
 ## ⚙️ Setup Instructions
 
@@ -101,12 +99,4 @@ This project uses environment variables for the GitHub API:
 - Use `.env.example` to document required variables
 
 ---
-
-## 🚀 Future Improvements
-
-- Add pagination for user search results
-- Add debounce to reduce API calls
-- Improve UI animations and transitions
-- Add caching for previously searched users
-- Add E2E testing (Cypress or Playwright)
 
