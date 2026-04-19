@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { fetchGitHubUser } from '../services/githubService.js';
+import { fetchGitHubUser } from '../services/githubService';
 
 type GitHubUser = {
   avatar_url: string;

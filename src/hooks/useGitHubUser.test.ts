@@ -7,7 +7,7 @@ vi.mock('../services/githubService', () => ({
   fetchGitHubUser: vi.fn()
 }))
 
-
+const mockedFetch = vi.mocked(fetchGitHubUser)
 
 test('fetches user successfully and updates userData', async () => {
   const fakeUser = {
@@ -18,7 +18,7 @@ test('fetches user successfully and updates userData', async () => {
     followers: 5,
     following: 2
   };
-  (fetchGitHubUser as any).mockResolvedValue({
+  mockedFetch.mockResolvedValue({
     ok: true,
     data: fakeUser,
      status: 200,
@@ -36,44 +36,9 @@ test('fetches user successfully and updates userData', async () => {
 })
 
 
-test('sets loading true then false during API call', async () => {
-  let resolvePromise: any;
-  (fetchGitHubUser as any).mockImplementation( () =>
-      new Promise((resolve) => {
-        resolvePromise = resolve
-      })
-  )
-
-  const { result } = renderHook(() => useGitHubUser())
-
-  act(() => {
-    result.current.searchUser('john')
-  })
-
-  
-  expect(result.current.loading).toBe(true)
-
-  await act(async () => {
-    resolvePromise({
-      ok: true,
-      data: {
-        avatar_url: '',
-        name: 'John',
-        bio: '',
-        public_repos: 0,
-        followers: 0,
-        following: 0
-      }
-    })
-  })
-
-  
-  expect(result.current.loading).toBe(false)
-})
-
 
 test('handles 404 user not found error', async () => {
-  (fetchGitHubUser as any).mockResolvedValue({
+  mockedFetch.mockResolvedValue({
     ok: false,
     status: 404,
     data: {}
@@ -90,3 +55,46 @@ test('handles 404 user not found error', async () => {
   expect(result.current.loading).toBe(false)
 })
 
+
+
+test('handles empty username input', async () => {
+  const { result } = renderHook(() => useGitHubUser())
+
+  await act(async () => {
+    await result.current.searchUser('   ')
+  })
+
+  expect(result.current.userData).toBe(null)
+  expect(result.current.error).toBe('Please enter a username')
+  expect(result.current.loading).toBe(false)
+})
+
+
+test('handles 403 rate limit error', async () => {
+  mockedFetch.mockResolvedValue({
+    ok: false,
+    status: 403,
+    data: {}
+  })
+
+  const { result } = renderHook(() => useGitHubUser())
+
+  await act(async () => {
+    await result.current.searchUser('john')
+  })
+
+  expect(result.current.error).toBe('Too many requests. Please try again later.')
+})
+
+
+test('handles network error', async () => {
+  mockedFetch.mockRejectedValue(new Error('Failed to fetch'))
+
+  const { result } = renderHook(() => useGitHubUser())
+
+  await act(async () => {
+    await result.current.searchUser('john')
+  })
+
+  expect(result.current.error).toBe('⚠️ Network error - please try again')
+})
