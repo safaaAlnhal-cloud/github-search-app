@@ -35,28 +35,26 @@ Users can switch between:
 The selected theme is saved and restored automatically on page reload.
 
 ---
-
 ## 📁 Folder Structure
 
+```txt
 src/
-│
 ├── components/
-│ ├── SearchBar.tsx
-│ ├── UserCard.tsx
-│ └── ThemeToggle.tsx
+│   ├── SearchBar.tsx
+│   ├── UserCard.tsx
+│   └── ThemeToggle.tsx
 │
 ├── hooks/
-│ ├── useGitHubUser.ts
-│ └── useTheme.ts
+│   ├── useGitHubUser.ts
+│   └── useTheme.ts
 │
 ├── services/
-│ └── githubService.ts
+│   └── githubService.ts
 │
 ├── App.tsx
 ├── main.tsx
 └── App.css
-
-
+```
 ---
 ## ⚙️ Setup Instructions
 
