@@ -100,11 +100,3 @@ This project uses environment variables for the GitHub API:
 
 ---
 
-## 🚀 Future Improvements
-
-- Add pagination for user search results
-- Add debounce to reduce API calls
-- Improve UI animations and transitions
-- Add caching for previously searched users
-- Add E2E testing (Cypress or Playwright)
-
